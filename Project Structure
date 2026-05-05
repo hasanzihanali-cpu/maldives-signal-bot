@@ -1,0 +1,30 @@
+maldives-signal-bot/
+│
+├── main.py
+├── requirements.txt
+├── .env.example
+│
+├── config/
+│   └── settings.py
+│
+├── core/
+│   ├── pipeline.py
+│   └── scheduler.py
+│
+├── ingestion/
+│   └── rss_fetcher.py
+│
+├── processing/
+│   ├── cleaner.py
+│   ├── deduplicator.py
+│   ├── scorer.py
+│   └── classifier.py
+│
+├── ai/
+│   └── summarizer.py
+│
+├── delivery/
+│   └── telegram_bot.py
+│
+├── storage/
+│   └── database.py
