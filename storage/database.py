@@ -47,15 +47,6 @@ def save_article(article):
         print(f"[DB ERROR] Failed to save article: {e}")
 
 
-def article_exists(url):
-    try:
-        cursor.execute("SELECT 1 FROM articles WHERE url=?", (url,))
-        return cursor.fetchone() is not None
-    except Exception as e:
-        print(f"[DB ERROR] article_exists failed: {e}")
-        return False
-
-
 def get_recent_titles(limit=200):
     try:
         cursor.execute(
