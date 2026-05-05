@@ -10,4 +10,9 @@ def send_message(text, url):
         "parse_mode": "Markdown"
     }
 
-    requests.post(api_url, json=payload)
+    try:
+        response = requests.post(api_url, json=payload, timeout=10)
+        response.raise_for_status()
+        print(f"[TELEGRAM] Message sent successfully.")
+    except Exception as e:
+        print(f"[TELEGRAM ERROR] Failed to send message: {e}")
