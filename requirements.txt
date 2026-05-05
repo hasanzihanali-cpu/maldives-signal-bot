@@ -1,0 +1,7 @@
+feedparser
+requests
+python-dotenv
+openai
+rapidfuzz
+schedule
+sqlite-utils
