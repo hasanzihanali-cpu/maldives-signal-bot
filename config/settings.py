@@ -10,6 +10,9 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 RSS_FEEDS = [
     "https://edition.mv/rss",
     "https://raajje.mv/feed",
+    "https://sun.mv/feed",
+    "https://avas.mv/feed",
+    "https://mihaaru.com/feed",
 ]
 
-SCORE_THRESHOLD = 40
+SCORE_THRESHOLD = 50
