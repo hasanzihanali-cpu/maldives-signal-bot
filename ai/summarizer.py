@@ -16,10 +16,14 @@ Article:
 {article['content']}
 """
 
-    response = client.chat.completions.create(
-        model="gpt-5.3",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.3
-    )
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4.1-nano",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+        return response.choices[0].message.content
 
-    return response.choices[0].message.content
+    except Exception as e:
+        print(f"[AI ERROR] Failed to summarize article: {e}")
+        return None
