@@ -16,9 +16,17 @@ CREATE TABLE IF NOT EXISTS articles (
 )
 """)
 
+conn.commit()
+
+
 def article_exists(url):
-    cursor.execute("SELECT 1 FROM articles WHERE url=?", (url,))
-    return cursor.fetchone() is not None
+    try:
+        cursor.execute("SELECT 1 FROM articles WHERE url=?", (url,))
+        return cursor.fetchone() is not None
+    except Exception as e:
+        print(f"[DB ERROR] article_exists failed: {e}")
+        return False
+
 
 def save_article(article):
     try:
@@ -35,5 +43,25 @@ def save_article(article):
             1
         ))
         conn.commit()
-    except:
-        pass
+    except Exception as e:
+        print(f"[DB ERROR] Failed to save article: {e}")
+
+
+def article_exists(url):
+    try:
+        cursor.execute("SELECT 1 FROM articles WHERE url=?", (url,))
+        return cursor.fetchone() is not None
+    except Exception as e:
+        print(f"[DB ERROR] article_exists failed: {e}")
+        return False
+
+
+def get_recent_titles(limit=200):
+    try:
+        cursor.execute(
+            "SELECT title FROM articles ORDER BY id DESC LIMIT ?", (limit,)
+        )
+        return [row[0] for row in cursor.fetchall()]
+    except Exception as e:
+        print(f"[DB ERROR] get_recent_titles failed: {e}")
+        return []
